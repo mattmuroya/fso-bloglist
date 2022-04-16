@@ -58,7 +58,19 @@ const resetTestDb = async () => {
   }
 };
 
+const getEmptyId = async () => {
+  const newBlog = new Blog({
+    title: 'to be deleted',
+    author: 'to be deleted',
+    url: 'to be deleted'
+  });
+  await newBlog.save();
+  await Blog.deleteOne(newBlog);
+  return newBlog._id.toString();
+};
+
 module.exports = {
   initialBlogs,
-  resetTestDb
+  resetTestDb,
+  getEmptyId
 };
