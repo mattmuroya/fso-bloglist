@@ -4,7 +4,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const { MONGODB_URL} = require('./utils/config');
 const { info } = require('./utils/logger');
-const middleware = require('./utils/middleware');
+const middleware = require('./middleware/middleware');
 const blogRouter = require('./controllers/blogRouter');
 
 info('Attempting to connect to MongoDB...');

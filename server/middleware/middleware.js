@@ -1,4 +1,4 @@
-const { info, error } = require('./logger');
+const { info, error } = require('../utils/logger');
 
 const reqLogger = (req, res, next) => {
   info('---');
