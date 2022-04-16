@@ -12,7 +12,12 @@ blogRouter.get('/', async (_req, res, next) => {
 
 blogRouter.post('/', async (req, res, next) => {
   try {
-    const newBlog = new Blog(req.body);
+    const newBlog = new Blog({
+      title: req.body.title,
+      author: req.body.author,
+      url: req.body.url,
+      likes: req.body.likes || 0
+    });
     const savedBlog = await newBlog.save();
     res.status(201).json(savedBlog);
   } catch (err) {
