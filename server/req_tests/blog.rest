@@ -1,0 +1,10 @@
+POST http://localhost:3001/api/blogs
+Content-Type: application/json
+
+{
+  "title": "note saved with user",
+  "author": "matt m author",
+  "url": "mattmuroya link.com",
+  "likes": 314,
+  "userId": "625f8afc9d143bb3273711ae"
+}

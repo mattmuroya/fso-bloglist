@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const supertest = require('supertest');
 const app = require('../app');
 const api = supertest(app);
-const { initialBlogs, resetTestDb } = require('./api.test.utils');
+const { initialBlogs, resetTestDb } = require('./blog.api.test.utils');
 
 beforeEach(resetTestDb);
 
