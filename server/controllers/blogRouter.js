@@ -45,7 +45,8 @@ blogRouter.put('/:id', async (req, res, next) => {
       title: req.body.title,
       author: req.body.author,
       url: req.body.url,
-      likes: req.body.likes
+      likes: req.body.likes,
+      userId: req.body.userId
     };
     const updatedNote
       = await Blog.findByIdAndUpdate(req.params.id, updatedDetails, { new: true });
