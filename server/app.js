@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const { MONGODB_URL} = require('./utils/config');
 const { info } = require('./utils/logger');
 const middleware = require('./middleware/middleware');
+const loginRouter = require('./controllers/loginRouter');
 const userRouter = require('./controllers/userRouter');
 const blogRouter = require('./controllers/blogRouter');
 
@@ -23,6 +24,7 @@ app.use(express.json());
 
 app.use(middleware.reqLogger);
 
+app.use('/api/login', loginRouter);
 app.use('/api/users', userRouter);
 app.use('/api/blogs', blogRouter);
 
