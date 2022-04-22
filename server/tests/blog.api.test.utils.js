@@ -1,3 +1,5 @@
+const bcrypt = require('bcrypt');
+const User = require('../models/user');
 const Blog = require('../models/blog');
 const initialBlogs = [
   {
@@ -51,11 +53,31 @@ const initialBlogs = [
 ];
 
 const resetTestDb = async () => {
+  await User.deleteMany({});
   await Blog.deleteMany({});
+
+  const passwordHash = await bcrypt.hash('secretpassword', 10);
+  const user = new User({
+    _id: '6262834b24228c7f3130dbf3',
+    username: 'root',
+    passwordHash,
+    blogs: [
+      '5a422a851b54a676234d17f7',
+      '5a422aa71b54a676234d17f8',
+      '5a422b3a1b54a676234d17f9',
+      '5a422b891b54a676234d17fa',
+      '5a422ba71b54a676234d17fb',
+      '5a422bc61b54a676234d17fc'
+    ],
+    __v: 0
+  });
+
   for (const blog of initialBlogs) {
     const newBlog = new Blog(blog);
+    newBlog.userId = user._id;
     await newBlog.save();
   }
+  await user.save();
 };
 
 const getEmptyId = async () => {

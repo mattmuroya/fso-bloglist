@@ -27,6 +27,7 @@ describe('fetching json data', () => {
 });
 
 describe('adding blog entries', () => {
+
   test('valid blog entry can be added', async () => {
     const response = await api.post('/api/blogs')
       .send({

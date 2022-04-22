@@ -42,13 +42,7 @@ blogRouter.post('/', async (req, res, next) => {
 blogRouter.delete('/:id', async (req, res, next) => {
   try {
     const decodedToken = jwt.verify(req.token, process.env.SECRET);
-    // if (!decodedToken.id) {
-    //   return res.status(401).json({
-    //     error: 'Token missing or invalid.'
-    //   });
-    // }
     const blog = await Blog.findById(req.params.id);
-    console.log(blog);
     if (blog === null || blog.userId.toString() !== decodedToken.id.toString()) {
       return res.status(401).json({
         error: 'Token missing or invalid'
