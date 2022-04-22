@@ -1,8 +1,6 @@
 const supertest = require('supertest');
 const app = require('../app');
 const api = supertest(app);
-const bcrypt = require('bcrypt');
-const User = require('../models/user');
 const { resetTestDb } = require('./blog.api.test.utils');
 
 beforeEach(resetTestDb);

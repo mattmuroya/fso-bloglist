@@ -41,7 +41,7 @@ blogRouter.post('/', async (req, res, next) => {
 
 blogRouter.delete('/:id', async (req, res, next) => {
   try {
-    const decodedToken = jwt.verify(req.token, process.env.SECRET);
+    const decodedToken = jwt.verify(req.token, process.env.SECRET); // req.token comes from tokenExtractor
     const blog = await Blog.findById(req.params.id);
     if (blog === null || blog.userId.toString() !== decodedToken.id.toString()) {
       return res.status(401).json({

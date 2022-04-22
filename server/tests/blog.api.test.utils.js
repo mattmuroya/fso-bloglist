@@ -78,6 +78,16 @@ const resetTestDb = async () => {
     await newBlog.save();
   }
   await user.save();
+
+  const passwordHash2 = await bcrypt.hash('secretpassword2', 10);
+  const user2 = new User({
+    _id: '6262834b24228c7f3130dbf4',
+    username: 'mattmuroya',
+    passwordHash: passwordHash2,
+    blogs: [],
+    __v: 0
+  });
+  await user2.save();
 };
 
 const getEmptyId = async () => {
