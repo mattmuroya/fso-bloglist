@@ -3,6 +3,7 @@ const supertest = require('supertest');
 const app = require('../app');
 const api = supertest(app);
 const { initialBlogs, resetTestDb } = require('./blog.api.test.utils');
+const User = require('../models/user');
 
 let token;
 let tokenWrongUser;
@@ -68,10 +69,10 @@ describe('adding blog entries', () => {
     expect(blogs.body).toHaveLength(initialBlogs.length + 1);
   });
 
-  test('blog entry with invalid token is rejected', async () => {
+  test('add blog entry with invalid token is rejected', async () => {
     const response = await api.post('/api/blogs')
       .set({
-        Authorization: `bearer ${tokenWrongUser}`
+        Authorization: 'bearer invalidtoken'
       })
       .send({
         title: 'new blog title',
@@ -156,8 +157,8 @@ describe('deleting blog entries', () => {
     const blogs = await api.get('/api/blogs');
     expect(blogs.body).toHaveLength(initialBlogs.length - 1);
 
-    const users = await api.get('/api/users');
-    expect(users.body[0].blogs).toHaveLength(initialBlogs.length - 1);
+    const user = await User.findById('6262834b24228c7f3130dbf3');
+    expect(user.blogs).toHaveLength(initialBlogs.length - 1);
   });
 
   test('delete by id rejected with invalid token', async () => {
