@@ -1,10 +1,11 @@
 POST http://localhost:3001/api/blogs/
 Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hdHRtdXJveWEiLCJpZCI6IjYyNWY4YWZjOWQxNDNiYjMyNzM3MTFhZSIsImlhdCI6MTY1MDU5NTQ3MX0.tv1cZQFQQo8QK0ub8n-Y46ptfuAFGNM1pQ85JtGNst
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hdHRtdXJveWEiLCJpZCI6IjYyNjI3NzRjMzg2MWU0NDU5Mzc4NmM1YiIsImlhdCI6MTY1MDYyMDI5MiwiZXhwIjoxNjUwNjIzODkyfQ.2ZG37RM7Ucm94i5N3rN1_nyZ-wQ4i_aaQW-qtKnSr-w
 
 {
-  "author": "matt m",
+  "title": "test blog added with authentication",
+  "author": "test author",
   "url": "mattmuroya.com",
   "likes": 1234,
-  "userId": "625f8afc9d143bb3273711ae"
+  "userId": "6262774c3861e44593786c5b"
 }

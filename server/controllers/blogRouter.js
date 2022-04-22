@@ -1,12 +1,11 @@
 const blogRouter = require('express').Router();
 const jwt = require('jsonwebtoken');
-const { getTokenFrom } = require('../utils/blogUtils');
 const Blog = require('../models/blog');
 const User = require('../models/user');
 
 blogRouter.get('/', async (_req, res, next) => {
   try {
-    const blogs = await Blog.find({}).populate('userId', { username: 1, name: 1 }) ;
+    const blogs = await Blog.find({}).populate('userId', { username: 1, name: 1 }); // userId references the field in the Blog model. Schema defines that the User model populates the userId field.
     res.json(blogs);
   } catch (err) {
     next(err);
@@ -15,10 +14,9 @@ blogRouter.get('/', async (_req, res, next) => {
 
 blogRouter.post('/', async (req, res, next) => {
   try {
-    const token = getTokenFrom(req);
     // jwt.verify decodes the token: returns object { username, id } defined by jwt.sign (loginRouter.js).
     // decoded token object contains username and id of user currently logged in.
-    const decodedToken = jwt.verify(token, process.env.SECRET);
+    const decodedToken = jwt.verify(req.token, process.env.SECRET); // req.token comes from tokenExtractor
     if (!decodedToken.id) {
       return res.status(401).json({
         error: 'Token missing or invalid.'
@@ -52,8 +50,7 @@ blogRouter.delete('/:id', async (req, res, next) => {
 
 blogRouter.put('/:id', async (req, res, next) => {
   try {
-    const token = getTokenFrom(req);
-    const decodedToken = jwt.verify(token, process.env.SECRET);
+    const decodedToken = jwt.verify(req.token, process.env.SECRET);
     if (!decodedToken.id) {
       return res.status(401).json({
         error: 'Token missing or invalid.'
