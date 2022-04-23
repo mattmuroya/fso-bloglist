@@ -145,9 +145,9 @@ describe('adding blog entries', () => {
 });
 
 describe('deleting blog entries', () => {
-  test('blog post with valid id can be deleted', async () => {
+  test.only('blog post with valid id can be deleted', async () => {
     const response = await api.get('/api/blogs');
-    const id = response.body[0].id;
+    const id = response.body[2].id;
     await api.delete(`/api/blogs/${id}`)
       .set({
         Authorization: `bearer ${token}`
