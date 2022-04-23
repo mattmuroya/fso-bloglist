@@ -7,6 +7,8 @@ const User = require('../models/user');
 
 let token;
 let tokenWrongUser;
+
+beforeAll(resetTestDb);
 beforeAll(async () => {
   const response = await api.post('/api/login')
     .send({
@@ -145,7 +147,7 @@ describe('adding blog entries', () => {
 });
 
 describe('deleting blog entries', () => {
-  test.only('blog post with valid id can be deleted', async () => {
+  test('blog post with valid id can be deleted', async () => {
     const response = await api.get('/api/blogs');
     const id = response.body[2].id;
     await api.delete(`/api/blogs/${id}`)

@@ -6,15 +6,13 @@ const { resetTestDb } = require('./blog.api.test.utils');
 beforeEach(resetTestDb);
 
 test('root can log in', async () => {
-  const response = await api.post('/api/login')
+  await api.post('/api/login')
     .send({
       username: 'root',
       password: 'secretpassword'
     })
     .expect(200)
     .expect('Content-Type', /application\/json/);
-
-  console.log(response.body);
 });
 
 test('reject wrong password attempt', async () => {
