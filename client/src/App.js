@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Error from './components/Error';
 import Blog from './components/Blog';
 import LoginForm from './components/LoginForm';
 import { getAll } from './services/blog';
@@ -33,6 +34,7 @@ const App = () => {
 
   return (
     <div>
+      {errorMessage && <Error errorMessage={errorMessage} />}
       <LoginForm
         setPassword={setPassword}
         setUsername={setUsername}
