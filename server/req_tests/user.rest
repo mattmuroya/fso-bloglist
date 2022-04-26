@@ -1,19 +1,20 @@
 POST http://localhost:3001/api/users
 Content-Type: application/json
 
-# {
-#     "username": "root",
-#     "name": "Superuser",
-#     "password": "salainen"
-# }
-
 {
-  "username": "mattmuroya",
-  "name": "Matt Muroya",
-  "password": "helloworld"
+    "username": "root",
+    "name": "Super User",
+    "password": "secretpassword"
 }
+
+# {
+#   "username": "mattmuroya",
+#   "name": "Matt Muroya",
+#   "password": "helloworld"
+# }
 
 # {
 #   "username": "mttm",
 #   "name": "MM"
 # }
+
